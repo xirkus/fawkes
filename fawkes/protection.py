@@ -39,7 +39,8 @@ class Fawkes(object):
         global graph
         graph = tf.get_default_graph()
 
-        model_dir = os.path.join(os.path.expanduser('~'), '.fawkes')
+        #model_dir = os.path.join(os.path.expanduser('~'), '.fawkes')
+        model_dir = "/tmp/fawkes"
         if not os.path.exists(os.path.join(model_dir, "mtcnn.p.gz")):
             os.makedirs(model_dir, exist_ok=True)
             get_file("mtcnn.p.gz", "http://mirror.cs.uchicago.edu/fawkes/files/mtcnn.p.gz", cache_dir=model_dir,

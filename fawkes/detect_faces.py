@@ -278,7 +278,9 @@ class ONet(Network):
 
 
 def create_mtcnn(sess, model_path):
-    model_dir = os.path.join(os.path.expanduser('~'), '.fawkes')
+
+    # model_dir = os.path.join(os.path.expanduser('~'), '.fawkes')
+    model_dir = "/tmp/fawkes"
     os.makedirs(model_dir, exist_ok=True)
 
     fp = gzip.open(os.path.join(model_dir, "mtcnn.p.gz"), 'rb')
