@@ -427,6 +427,7 @@ def build_bottleneck_model(model, cut_off):
 
 
 def load_extractor(name):
+
     hash_map = {"extractor_2": "ce703d481db2b83513bbdafa27434703",
                 "extractor_0": "94854151fd9077997d69ceda107f9c6b"}
     assert name in ["extractor_2", 'extractor_0']
@@ -518,8 +519,7 @@ def pairwise_l2_distance(A, B):
 
 
 def select_target_label(imgs, feature_extractors_ls, feature_extractors_names, metric='l2'):
-
-    #model_dir = os.path.join(os.path.expanduser('~'), '.fawkes')
+    # model_dir = os.path.join(os.path.expanduser('~'), '.fawkes')
     model_dir = "/tmp/fawkes"
 
     original_feature_x = extractor_ls_predict(feature_extractors_ls, imgs)
