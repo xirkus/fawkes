@@ -433,6 +433,9 @@ def load_extractor(name):
     model_file = pkg_resources.resource_filename("fawkes", "model/{}.h5".format(name))
     cur_hash = hash_map[name]
     model_dir = pkg_resources.resource_filename("fawkes", "model/")
+
+    print(f"MODEL DIRECTORY: {model_dir}")
+
     os.makedirs(model_dir, exist_ok=True)
     get_file("{}.h5".format(name), "http://mirror.cs.uchicago.edu/fawkes/files/{}.h5".format(name),
              cache_dir=model_dir, cache_subdir='', md5_hash=cur_hash)
@@ -456,7 +459,9 @@ class Extractor(object):
 
 
 def get_dataset_path(dataset):
-    model_dir = os.path.join(os.path.expanduser('~'), '.fawkes')
+    # model_dir = os.path.join(os.path.expanduser('~'), '.fawkes')
+    model_dir = "/tmp/fawkes"
+
     if not os.path.exists(os.path.join(model_dir, "config.json")):
         raise Exception("Please config the datasets before running protection code. See more in README and config.py.")
 
@@ -476,7 +481,9 @@ def dump_image(x, filename, format="png", scale=False):
 
 
 def load_embeddings(feature_extractors_names):
-    model_dir = os.path.join(os.path.expanduser('~'), '.fawkes')
+    # model_dir = os.path.join(os.path.expanduser('~'), '.fawkes')
+    model_dir = "/tmp/fawkes"
+
     for extractor_name in feature_extractors_names:
         fp = gzip.open(os.path.join(model_dir, "{}_emb.p.gz".format(extractor_name)), 'rb')
         path2emb = pickle.load(fp)
@@ -511,7 +518,9 @@ def pairwise_l2_distance(A, B):
 
 
 def select_target_label(imgs, feature_extractors_ls, feature_extractors_names, metric='l2'):
-    model_dir = os.path.join(os.path.expanduser('~'), '.fawkes')
+
+    #model_dir = os.path.join(os.path.expanduser('~'), '.fawkes')
+    model_dir = "/tmp/fawkes"
 
     original_feature_x = extractor_ls_predict(feature_extractors_ls, imgs)
 
